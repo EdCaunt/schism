@@ -165,7 +165,9 @@ def calculate_error(refinement):
     vel.data[:] = vel_data_full[:]
 
     # Fix the timestep for all
-    dt = 0.1*2*np.pi/(336*np.amax(vel.data))
+    # dt = 0.1*2*np.pi/(336*np.amax(vel.data))
+    # Set the timestep at 10% of critical timestep
+    dt = 0.1*new_grid.spacing[0]/np.amax(vel.data)
 
     # Set up the TimeFunction
     p = dv.TimeFunction(name='p', grid=new_grid, space_order=4, time_order=2)
